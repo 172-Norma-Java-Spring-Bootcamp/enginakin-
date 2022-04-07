@@ -2,10 +2,13 @@ This project reports type of classes and endpoint
 
 clone the project 
 
-go to terminal and run 'mvn install' command
+
 
 
 In the project you want to use the plugin, enter the values as dependency
+
+go to terminal and run 'mvn install' command
+
 
         <dependencies>
              <dependency>
