@@ -20,10 +20,7 @@ import java.util.regex.Pattern;
 public class EndPointReport {
     private List<String> getMappingEndPoints= new ArrayList<>();
     private List<String> postMappingEndPoints= new ArrayList<>();
-    private final String getMapping="@GetMapping";
-    private final String postMapping="@PostMapping";
-
-
+    
 
 
     public void endPointReport(File file){
@@ -35,7 +32,7 @@ public class EndPointReport {
                 Scanner myReader = new Scanner(file);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
-                    if(data.contains("@RequestMapping")){
+                    if(checkIfDataRequestMapping(data)){
                         Pattern p = Pattern.compile("\"([^\"]*)\"");
                         Matcher m = p.matcher(data);
                         while (m.find()) {
@@ -43,7 +40,7 @@ public class EndPointReport {
 
                         }
                     }
-                    if(data.contains("@GetMapping")){
+                    if(checkIfDataGetMapping(data)){
                         Pattern p = Pattern.compile("\"([^\"]*)\"");
                         Matcher m = p.matcher(data);
                         while (m.find()) {
@@ -53,7 +50,7 @@ public class EndPointReport {
                         getMappingEndPoints.add(requestMapping+getMapping);
                         getMapping="";
                     }
-                    if(data.contains("@PostMapping")){
+                    if(checkIfDataPostMapping(data)){
                         Pattern p = Pattern.compile("\"([^\"]*)\"");
                         Matcher m = p.matcher(data);
                         while (m.find()) {
@@ -63,7 +60,6 @@ public class EndPointReport {
                         postMappingEndPoints.add(requestMapping+postMapping);
                         postMapping="";
                     }
-
                 }
                 myReader.close();
 
@@ -73,9 +69,17 @@ public class EndPointReport {
         }
 
 
-
-
     }
+    private boolean checkIfDataRequestMapping(String data) {
+        return data.equals("@RequestMapping");
+    }
+    private boolean checkIfDataPostMapping(String data) {
+        return data.equals("@PostMapping");
+    }
+    private boolean checkIfDataGetMapping(String data) {
+        return data.equals("@GetMapping");
+    }
+
 
 
 

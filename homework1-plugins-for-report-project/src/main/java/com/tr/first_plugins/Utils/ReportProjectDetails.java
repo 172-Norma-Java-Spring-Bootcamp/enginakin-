@@ -40,15 +40,15 @@ public class ReportProjectDetails {
                 Scanner myReader = new Scanner(file);
                 while (myReader.hasNextLine()) {
                     String data = myReader.nextLine();
-                    if(data.equals("@Service")){
+                    if(checkIfDataService(data)){
                         this.numOfServiceClass++;
                     }
-                   if(data.equals("@Controller") || data.equals("@RestController")){
+                   if(checkIfDataController(data) || checkIfDataRestController(data)){
 
                        endPoints.endPointReport(file);
                         this.numOfControllerClass++;
                     }
-                    if(data.equals("@Entity")){
+                    if(checkIfDataEntity(data)){
                         this.numOfModelClass++;
                     }
                 }
@@ -59,6 +59,19 @@ public class ReportProjectDetails {
             e.printStackTrace();
         }
 
+    }
+
+    private boolean checkIfDataService(String data) {
+        return data.equals("@Service");
+    }
+    private boolean checkIfDataController(String data) {
+        return data.equals("@Controller");
+    }
+    private boolean checkIfDataRestController(String data) {
+        return data.equals("@RestController");
+    }
+    private boolean checkIfDataEntity(String data) {
+        return data.equals("@Entity");
     }
 
 
