@@ -17,23 +17,7 @@ public class FirstPluginsApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(FirstPluginsApplication.class, args);
-
-        String path=System.getProperty("user.dir")+"\\src\\main\\java";
-
-        ReportProjectDetails report=new ReportProjectDetails(path);
-        EndPointReport endPointReport=report.getEndPoints();
-        System.out.println("------------ end point for get ");
-
-        for (String s:endPointReport.getGetMappingEndPoints()){
-            System.out.println(s);
-        }
-        System.out.println("------------ end point for postMapping ");
-
-        for (String s:endPointReport.getPostMappingEndPoints()){
-            System.out.println(s);
-        }
-
-        }
+    }
 
 
 }
