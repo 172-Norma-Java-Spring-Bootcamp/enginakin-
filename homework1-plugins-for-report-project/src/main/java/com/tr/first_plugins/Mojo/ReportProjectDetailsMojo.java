@@ -18,11 +18,11 @@ import java.util.Scanner; // Import the Scanner class to read text files
 import java.io.File;
 import java.util.List;
 
-@Mojo(name = "report-project-details", defaultPhase = LifecyclePhase.INSTALL)
+@Mojo(name = "run", defaultPhase = LifecyclePhase.INSTALL)
 public class ReportProjectDetailsMojo extends AbstractMojo {
 
     // first  : mvn clean install
-    // second : mvn groupId:artifactId:goal  =>  mvn com.tr:first_plugins:report-project-details
+    // second : mvn groupId:artifactId:goal  =>
 
     @Parameter(defaultValue = "${project}", required = true, readonly = true)
     MavenProject project;

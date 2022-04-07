@@ -10,7 +10,7 @@
     </parent>
     <packaging>maven-plugin</packaging>
     <groupId>com.tr</groupId>
-    <artifactId>report-project-details</artifactId>
+    <artifactId>report-class</artifactId>
     <version>0.1</version>
     <name>first_plugins</name>
     <description>Plugins project for report in package and classes details</description>
