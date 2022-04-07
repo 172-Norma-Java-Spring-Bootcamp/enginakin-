@@ -1,26 +1,38 @@
 package com.tr.first_plugins.Utils;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import javax.inject.Inject;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 
 
+@RequiredArgsConstructor
+@Data
 public class ReportProjectDetails {
 
-    private List<File> files;
+    private List<File> files=new ArrayList<>();
     private int numOfClass;
     private int numOfServiceClass;
     private int numOfControllerClass;
     private int numOfModelClass;
+    private EndPointReport endPoints=new EndPointReport();
 
 
-    public ReportProjectDetails(List<File> files){
-        this.files=files;
+    public ReportProjectDetails(String path){
+
+        this.files=Utils.listf(path,files);
         numOfClass=files.size();
         reportClassDetails();
+
     }
+
 
     private void reportClassDetails(){
         try {
@@ -32,6 +44,8 @@ public class ReportProjectDetails {
                         this.numOfServiceClass++;
                     }
                    if(data.equals("@Controller") || data.equals("@RestController")){
+
+                       endPoints.endPointReport(file);
                         this.numOfControllerClass++;
                     }
                     if(data.equals("@Entity")){
@@ -47,35 +61,5 @@ public class ReportProjectDetails {
 
     }
 
-    public int getNumOfClass() {
-        return numOfClass;
-    }
 
-    public void setNumOfClass(int numOfClass) {
-        this.numOfClass = numOfClass;
-    }
-
-    public int getNumOfServiceClass() {
-        return numOfServiceClass;
-    }
-
-    public void setNumOfServiceClass(int numOfServiceClass) {
-        this.numOfServiceClass = numOfServiceClass;
-    }
-
-    public int getNumOfControllerClass() {
-        return numOfControllerClass;
-    }
-
-    public void setNumOfControllerClass(int numOfControllerClass) {
-        this.numOfControllerClass = numOfControllerClass;
-    }
-
-    public int getNumOfModelClass() {
-        return numOfModelClass;
-    }
-
-    public void setNumOfModelClass(int numOfModelClass) {
-        this.numOfModelClass = numOfModelClass;
-    }
 }

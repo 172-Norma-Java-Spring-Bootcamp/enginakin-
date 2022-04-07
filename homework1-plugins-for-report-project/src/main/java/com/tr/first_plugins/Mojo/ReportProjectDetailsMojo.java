@@ -33,11 +33,10 @@ public class ReportProjectDetailsMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         // create report class while compile time in execute function
         // utils.getAllFileInProject return all file in project
-        // ReportProjectDetails class count of the service class , controller class , data class and all class
+        // ReportProjectDetails class count of the service class , controller class , data class , all class and get all endpoint
 
-        List<File> files=new ArrayList<>();
 
-        ReportProjectDetails report=new ReportProjectDetails(Utils.listf(path,files));
+        ReportProjectDetails report=new ReportProjectDetails(path);
 
         // write project detail
         getLog().info("********************  REPORT **************************");
@@ -48,21 +47,21 @@ public class ReportProjectDetailsMojo extends AbstractMojo {
         getLog().info("* Name of group id : "+project.getGroupId());
         getLog().info("* Name of artifact id : "+project.getArtifactId());
         getLog().info("* Description of project: "+project.getDescription());
+        getLog().info("********************  ENDPOİNTS  **************************");
+
+        getLog().info("********************  POSTMAPPING ENDPOİNTS  **************************");
+        for (String s:report.getEndPoints().getPostMappingEndPoints()){
+            getLog().info("* "+s);
+        }
+        getLog().info("********************  GETMAPPING ENDPOİNTS  **************************");
+        for (String s:report.getEndPoints().getPostMappingEndPoints()){
+            getLog().info("* "+s);
+        }
         getLog().info("********************  END  **************************");
         List<Dependency> dependencies = project.getDependencies();
         long numDependencies = dependencies.stream().count();
         getLog().info("Number of dependencies: " + numDependencies);
 
-        // in this project output :
-        /*
-[INFO] ********************  REPORT **************************
-[INFO] num of class: 10
-[INFO] num of Service class: 1
-[INFO] num of Controller class: 2
-[INFO] num of Data class: 2
-[INFO] ********************  END  **************************
-
-         */
 
     }
 
