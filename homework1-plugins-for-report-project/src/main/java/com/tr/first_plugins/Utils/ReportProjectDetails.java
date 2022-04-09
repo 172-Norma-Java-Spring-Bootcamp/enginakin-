@@ -3,11 +3,9 @@ package com.tr.first_plugins.Utils;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
-import javax.inject.Inject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,7 +25,7 @@ public class ReportProjectDetails {
 
     public ReportProjectDetails(String path){
 
-        this.files=Utils.listf(path,files);
+        this.files=Utils.getAllListFile(path,files);
         numOfClass=files.size();
         reportClassDetails();
 

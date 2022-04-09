@@ -31,36 +31,34 @@ public class ReportProjectDetailsMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException, MojoFailureException {
-        // create report class while compile time in execute function
+        // create reportProjectDetails class while compile time in execute function
         // utils.getAllFileInProject return all file in project
         // ReportProjectDetails class count of the service class , controller class , data class , all class and get all endpoint
 
 
-        ReportProjectDetails report=new ReportProjectDetails(path);
+        ReportProjectDetails reportProjectDetails=new ReportProjectDetails(path);
 
         // write project detail
         getLog().info("********************  REPORT **************************");
-        getLog().info("* Number of class: "+report.getNumOfClass());
-        getLog().info("* Number of Service class: "+report.getNumOfServiceClass());
-        getLog().info("* Number of Controller class: "+report.getNumOfControllerClass());
-        getLog().info("* Number of Data class: "+report.getNumOfModelClass());
+        getLog().info("* Number of class: "+reportProjectDetails.getNumOfClass());
+        getLog().info("* Number of Service class: "+reportProjectDetails.getNumOfServiceClass());
+        getLog().info("* Number of Controller class: "+reportProjectDetails.getNumOfControllerClass());
+        getLog().info("* Number of Data class: "+reportProjectDetails.getNumOfModelClass());
         getLog().info("* Name of group id : "+project.getGroupId());
         getLog().info("* Name of artifact id : "+project.getArtifactId());
         getLog().info("* Description of project: "+project.getDescription());
         getLog().info("********************  ENDPOİNTS  **************************");
 
         getLog().info("********************  POSTMAPPING ENDPOİNTS  **************************");
-        for (String s:report.getEndPoints().getPostMappingEndPoints()){
+        for (String s:reportProjectDetails.getEndPoints().getPostMappingEndPoints()){
             getLog().info("* "+s);
         }
         getLog().info("********************  GETMAPPING ENDPOİNTS  **************************");
-        for (String s:report.getEndPoints().getPostMappingEndPoints()){
+        for (String s:reportProjectDetails.getEndPoints().getPostMappingEndPoints()){
             getLog().info("* "+s);
         }
         getLog().info("********************  END  **************************");
-        List<Dependency> dependencies = project.getDependencies();
-        long numDependencies = dependencies.stream().count();
-        getLog().info("Number of dependencies: " + numDependencies);
+
 
 
     }
